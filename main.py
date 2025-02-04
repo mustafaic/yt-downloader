@@ -157,7 +157,7 @@ class MyApp(QMainWindow):
 
         self.get_video_formats()
 
-        API_KEY = "AIzaSyADIOXG3s0DdWRKRE6bassmwUHodtj853A"  # Google Cloud API Key
+        API_KEY = ""  # Google Cloud API Key
 
         # Kullanıcının yazdığı URL'yi al
         url = self.ui.url_entry.text().strip()
