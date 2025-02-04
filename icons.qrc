@@ -1,0 +1,32 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/account_circle_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/add_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/arrow_drop_down_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/check_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/check_box_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/check_box_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/check_box_outline_blank_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/close_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/close_fullscreen_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/delete_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/download_icon.png</file>
+    <file>icons/favorite_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/favorite_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/filter_alt_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/home_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/list_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/logout_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/menu_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/menu_open_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/more_vert_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/open_in_full_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/remove_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/search_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/settings_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/star_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/star_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+    <file>icons/star_rate_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>icons/star_rate_24dp_E8EAED_FILL1_wght400_GRAD0_opsz24.png</file>
+  </qresource>
+</RCC>
