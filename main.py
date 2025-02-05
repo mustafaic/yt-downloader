@@ -4,7 +4,6 @@ import sys
 import requests
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
-from PyQt5 import QtWidgets, QtGui, QtCore
 from yt_dlp import YoutubeDL
 from downloader_arayuz import Ui_MainWindow
 
@@ -16,9 +15,9 @@ class MyApp(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.ui.button_convert.clicked.connect(self.convert)
-        self.ui.button_delete.clicked.connect(self.clear_list)
-        self.ui.pushButton.clicked.connect(self.download_video)
+        self.ui.button_convert.clicked.connect(self.convert) #convert button
+        self.ui.button_delete.clicked.connect(self.clear_list) #clear button (inactive)
+        self.ui.pushButton.clicked.connect(self.download_video) #download button
 
 
     def extract_video_id(self, url):
@@ -31,6 +30,7 @@ class MyApp(QMainWindow):
         if match:
             return match.group(1)
         return None
+
 
     def get_video_formats(self):
         url = self.ui.url_entry.text().strip()
@@ -191,54 +191,6 @@ class MyApp(QMainWindow):
             self.ui.thumbnail_label.clear()
 
 
-    def create_video_entry(self, video_title):
-        """
-        Bu fonksiyon, her indirilen film için bir başlık ve bir ilerleme çubuğu oluşturur.
-
-        :param video_title: Video başlığını belirler.
-        """
-        # Yeni bir video için frame oluştur
-        list_media_frame = QtWidgets.QFrame()
-        list_media_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        list_media_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        # Vertical layout ekle
-        self.ui.verticalLayout_8 = QtWidgets.QVBoxLayout(list_media_frame)
-
-        # Başlık (title) etiketi oluştur
-        list_film_title = QtWidgets.QLabel(list_media_frame)
-        list_film_title.setMinimumSize(QtCore.QSize(0, 30))
-        list_film_title.setMaximumSize(QtCore.QSize(16777215, 30))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        list_film_title.setStyleSheet("color: white;")
-        list_film_title.setText(video_title)  # Başlık olarak video başlığını kullan
-        list_film_title.setObjectName("list_film_title")
-        self.ui.verticalLayout_8.addWidget(list_film_title)
-
-        # İlerleme çubuğu oluştur
-        progressBar = QtWidgets.QProgressBar(self.ui.list_media_frame)
-        progressBar.setMaximumSize(QtCore.QSize(16777215, 30))
-        progressBar.setStyleSheet("color: white;")
-        progressBar.setProperty("value", 0)  # Başlangıç değeri
-        progressBar.setObjectName("progressBar")
-        self.ui.verticalLayout_8.addWidget(progressBar)
-
-        # Frame'i sağdaki layout'a ekle
-        self.ui.verticalLayout_7.addWidget(list_media_frame, 0, QtCore.Qt.AlignmentFlag.AlignTop)
-
-        # Frame'i kaydırılabilir alana ekle
-        self.ui.scrollArea.setWidget(self.ui.list_area)
-
-        # İlgili widget'ı ekleyin
-        self.ui.verticalLayout_6.addWidget(self.ui.scrollArea)
-        self.ui.verticalLayout_2.addWidget(self.ui.right_menu_content)
-        self.ui.verticalLayout.addWidget(self.ui.right_menu_content_frame)
-        self.ui.horizontalLayout_2.addWidget(self.ui.right_menu)
-        self.ui.horizontalLayout.addWidget(self.ui.central_right)
-        self.ui.setCentralWidget(self.ui.centralwidget)
-
-        # Eğer istediğiniz bir şey varsa eklemek için fonksiyona detaylar eklenebilir
-
     def download_video(self):
         try:
             # URL kontrolü
@@ -271,8 +223,7 @@ class MyApp(QMainWindow):
                     info = ydl.extract_info(url, download=False)
                     video_title = info.get('title', 'video')
                     # Dosya adından geçersiz karakterleri temizle
-                    video_title = "".join(
-                        [c for c in video_title if c.isalpha() or c.isdigit() or c in ' -_.']).rstrip()
+                    video_title = "".join([c for c in video_title if c.isalpha() or c.isdigit() or c in ' -_.']).rstrip()
 
                 # Format türüne göre dosya uzantısını belirle
                 is_audio_only = "MP3" in self.ui.comboBox.currentText()
@@ -306,12 +257,12 @@ class MyApp(QMainWindow):
                 try:
                     with YoutubeDL(ydl_opts) as ydl:
                         ydl.download([url])
+
                     self.show_message("Başarılı", f"İndirme tamamlandı!\nKonum: {output_path}")
                 except Exception as e:
                     self.show_message("Hata", f"İndirme sırasında hata oluştu: {str(e)}")
 
 
-            self.create_video_entry(video_title)
 
         except Exception as e:
             self.show_message("Hata", f"Beklenmeyen bir hata oluştu: {str(e)}")
@@ -319,23 +270,12 @@ class MyApp(QMainWindow):
             import traceback
             traceback.print_exc()
 
+
     def show_message(self, title, message):
         """Mesaj kutusu göster"""
         from PyQt5.QtWidgets import QMessageBox
         QMessageBox.information(self, title, message)
 
-    def download_progress_hook(self, d):
-        """İndirme ilerleme durumunu takip et"""
-        if d['status'] == 'downloading':
-            # İndirme yüzdesi hesapla
-            total_bytes = d.get('total_bytes')
-            downloaded_bytes = d.get('downloaded_bytes', 0)
-
-            if total_bytes:
-                progress = (downloaded_bytes / total_bytes) * 100
-                # Eğer bir progress bar'ınız varsa burada güncelleyebilirsiniz
-                # self.ui.progressBar.setValue(int(progress))
-                print(f"İndirme ilerleme: {progress:.1f}%")
 
     def clear_list(self):
         pass
